@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { FlexColumnDiv } from './styles/SharedStyles';
+import SearchedPlayer from './SearchedPlayer';
 
 class Search extends React.Component {
   constructor(props) {
@@ -8,9 +9,11 @@ class Search extends React.Component {
     this.state = {
       searchString: '',
       players: [],
+      selectedPlayerId: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handlePlayerSelection = this.handlePlayerSelection.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +27,18 @@ class Search extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({searchString: event.target.value.toLowerCase()});
+    this.setState({
+      searchString: event.target.value.toLowerCase(),
+      selectedPlayerId: null
+    });
+  }
+
+  handlePlayerSelection(selectedPlayerId) {
+    if (selectedPlayerId === this.state.selectedPlayerId) {
+      this.setState({ selectedPlayerId: null });
+    } else {
+      this.setState({ selectedPlayerId });
+    }
   }
 
   render() {
@@ -37,7 +51,14 @@ class Search extends React.Component {
     const listedSearchedPlayers = [];
 
     for (let i = 0; i < numberOfPlayers; i++) {
-      listedSearchedPlayers.push(<span>{searchedPlayers[i].name}</span>)
+      listedSearchedPlayers.push(
+      <SearchedPlayer
+        key={searchedPlayers[i].id}
+        player={searchedPlayers[i]}
+        selectedPlayerId={this.state.selectedPlayerId}
+        handlePlayerSelection={this.handlePlayerSelection}
+      />
+      );
     }
 
     return (
@@ -50,7 +71,7 @@ class Search extends React.Component {
         </form>
         {listedSearchedPlayers}
       </FlexColumnDiv>
-    );
+    );  
   }
 }
 
