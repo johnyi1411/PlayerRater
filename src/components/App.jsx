@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Player from './Player';
+import Search from './Search';
 
 class App extends React.Component {
   constructor (props) {
@@ -24,6 +25,7 @@ class App extends React.Component {
     const players = this.state.players.map((player) => <Player key={player.id} player={player} />);
     return (
       <div>
+        <Search />
         {players}
       </div>
     );
