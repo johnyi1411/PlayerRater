@@ -8,3 +8,7 @@ app.use(morgan('tiny'));
 app.use(express.static('public'));
 
 app.listen(port, () => console.log(`listening on port ${port}!`));
+
+app.get('/players', (req, res) => {
+  res.send(require('../database/exampleData'));
+});
