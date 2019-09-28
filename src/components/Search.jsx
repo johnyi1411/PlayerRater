@@ -14,6 +14,7 @@ class Search extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handlePlayerSelection = this.handlePlayerSelection.bind(this);
+    this.clearSelectedPlayer = this.clearSelectedPlayer.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +32,10 @@ class Search extends React.Component {
       searchString: event.target.value.toLowerCase(),
       selectedPlayerId: null
     });
+  }
+
+  clearSelectedPlayer() {
+    this.setState({ selectedPlayerId: null });
   }
 
   handlePlayerSelection(selectedPlayerId) {
@@ -57,6 +62,7 @@ class Search extends React.Component {
         player={searchedPlayers[i]}
         selectedPlayerId={this.state.selectedPlayerId}
         handlePlayerSelection={this.handlePlayerSelection}
+        clearSelectedPlayer={this.clearSelectedPlayer}
       />
       );
     }

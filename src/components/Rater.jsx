@@ -19,6 +19,7 @@ class Rater extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.clearSelectedPlayer();
     axios({
       method: 'post',
       url: '/players',
