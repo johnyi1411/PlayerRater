@@ -1,11 +1,12 @@
 import React from 'react';
+import { FlexSpaceBetweenDiv } from './styles/SharedStyles'
 
 const Player = ({player}) => {
   return (
-    <div>
+    <FlexSpaceBetweenDiv>
       <span>{player.name}</span>
       <span>{player.position}</span>
-    </div>
+    </FlexSpaceBetweenDiv>
   );
 };
 
