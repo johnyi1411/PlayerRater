@@ -11,8 +11,9 @@ client.connect(err => {
 });
 
 class User {
-  constructor(userId, password) {
+  constructor(userId, username, password) {
     this.userId = userId;
+    this.username = username;
     this.password = password;
   }
 
@@ -33,7 +34,7 @@ module.exports = {
   },
 
   getAverageRatings: (callback) => {
-    const text = "select name, players.player_id, rating FROM players LEFT OUTER JOIN (select player_id, AVG(rating) as rating from ratings group by player_id) average_ratings ON players.player_id = average_ratings.player_id WHERE rating is not null ORDER BY rating DESC;";
+    const text = "select name, players.player_id, rating FROM players LEFT OUTER JOIN (select player_id, AVG(rating) as rating from ratings group by player_id) average_ratings ON players.player_id = average_ratings.player_id WHERE rating is not null ORDER BY rating DESC LIMIT 25;";
     client
       .query(text)
       .then((res) => {
@@ -72,12 +73,12 @@ module.exports = {
   },
 
   login: ({username}, callback) => {
-    const text = 'SELECT user_id, password FROM users WHERE username = $1';
+    const text = 'SELECT * FROM users WHERE username = $1';
     client
       .query(text, [username])
       .then((res) => {
         if (res.rows[0]) {
-          const user = new User (res.rows[0].user_id, res.rows[0].password);
+          const user = new User (res.rows[0].user_id, res.rows[0].username, res.rows[0].password);
           callback(null, user);
         } else {
           callback('no user found');

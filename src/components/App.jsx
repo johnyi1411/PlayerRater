@@ -4,6 +4,7 @@ import Player from './Player';
 import Search from './Search';
 import Login from './Login';
 import Register from './Register';
+import User from './User';
 import { FlexDiv, FlexColumnDiv } from './styles/SharedStyles'
 import { RatingTable } from './styles/AppStyles';
 
@@ -12,11 +13,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       ratings: [],
-      registerView: false,
-      userId: null
+      userId: null,
     };
     this.getAverageRatings = this.getAverageRatings.bind(this);
-    this.toggleRegisterView = this.toggleRegisterView.bind(this);
     this.createSession = this.createSession.bind(this);
   }
 
@@ -34,9 +33,7 @@ class App extends React.Component {
     this.getAverageRatings();
   }
 
-  toggleRegisterView() {
-    this.setState({ registerView: !this.state.registerView });
-  }
+  
 
   createSession(userId) {
     this.setState({ userId });
@@ -44,14 +41,11 @@ class App extends React.Component {
 
   render() {
     const ratings = this.state.ratings.map((player) => <Player key={player.player_id} player={player} />);
-    const login = this.state.registerView ? 
-      <Register toggleRegisterView={this.toggleRegisterView}/> 
-      : <Login toggleRegisterView={this.toggleRegisterView} createSession={this.createSession}/>;
 
     return (
       <FlexDiv>
         <FlexColumnDiv>
-          {login}
+          <User toggleRegisterView={this.toggleRegisterView} createSession={this.createSession}/>
           <Search getAverageRatings={this.getAverageRatings} userId={this.state.userId}/>
         </FlexColumnDiv>
         <RatingTable>
