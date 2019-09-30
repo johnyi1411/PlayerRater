@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Player from './Player';
 import Search from './Search';
-import Login from './Login';
-import Register from './Register';
 import User from './User';
 import { FlexDiv, FlexColumnDiv } from './styles/SharedStyles'
 import { RatingTable } from './styles/AppStyles';
