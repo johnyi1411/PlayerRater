@@ -49,5 +49,16 @@ module.exports = {
       });
   },
 
+  createUser: ({username, password}, callback) => {
+    const text = 'INSERT INTO users (username, password) VALUES($1, $2)';
+    client
+      .query(text, [username, password])
+      .then((res) => callback(null, res))
+      .catch(e => {
+        console.error(e.stack);
+        callback(e);
+      });
+  }
+
   
 };

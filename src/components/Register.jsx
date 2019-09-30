@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Register extends React.Component {
   constructor (props) {
@@ -11,10 +12,25 @@ class Register extends React.Component {
 
   handleRegister(e) {
     e.preventDefault();
-    alert(`${document.getElementById('username').value},
-      ${document.getElementById('password').value},
-      ${document.getElementById('passwordconfirmation').value}`);
-    this.props.toggleRegisterView();
+    if (document.getElementById('password').value === document.getElementById('passwordconfirmation').value) {
+      axios({
+        method: 'post',
+        url: '/api/users',
+        data: {
+          username: document.getElementById('username').value,
+          password: document.getElementById('password').value
+        }
+      })
+        .then((res) => {
+          alert('user created');
+          this.props.toggleRegisterView();
+        })
+        .catch((err) => {
+          alert('error creating user');
+        })
+    } else {
+      alert('passwords do not match');
+    }
   }
 
   render() {

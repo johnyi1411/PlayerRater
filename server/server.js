@@ -32,8 +32,8 @@ app.get('/api/ratings', (req, res) => {
     } else {
       res.send(result);
     }
-  })
-})
+  });
+});
 
 app.post('/api/ratings', (req, res) => {
   postgres.createRating(req.body, (err, result) => {
@@ -43,5 +43,16 @@ app.post('/api/ratings', (req, res) => {
     } else {
       res.send({status: 200});
     }
-  })
+  });
+});
+
+app.post('/api/users', (req, res) => {
+  postgres.createUser(req.body, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({status: 500});
+    } else {
+      res.send({status: 200});
+    }
+  });
 })
