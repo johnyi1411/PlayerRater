@@ -20,7 +20,8 @@ class Search extends React.Component {
   componentDidMount() {
     axios.get('/players')
       .then((response) => {
-        this.setState({ players: response.data.squad });
+        console.log(response.data);
+        this.setState({ players: response.data });
       })
       .catch((err) => {
         console.log(err);
@@ -58,7 +59,7 @@ class Search extends React.Component {
     for (let i = 0; i < numberOfPlayers; i++) {
       listedSearchedPlayers.push(
       <SearchedPlayer
-        key={searchedPlayers[i].id}
+        key={searchedPlayers[i].player_id}
         player={searchedPlayers[i]}
         selectedPlayerId={this.state.selectedPlayerId}
         handlePlayerSelection={this.handlePlayerSelection}

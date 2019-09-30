@@ -10,7 +10,13 @@ client.connect(err => {
   }
 });
 
-client
-  .query('SELECT * from dishes')
-  .then(res => console.log(res.rows[0]))
-  .catch(e => console.error(e.stack));
+module.exports = {
+  getPlayers: (callback) => {
+    client
+      .query('SELECT * from players')
+      .then((res) => {
+        callback(res.rows);
+        })
+      .catch(e => console.error(e.stack))
+  }
+};

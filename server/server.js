@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const bodyParser = require('body-parser')
-
+const bodyParser = require('body-parser');
+const postgres = require('../database/postgres');
 
 const app = express();
 const port = 3000;
@@ -14,7 +14,9 @@ app.use(bodyParser.json());
 app.listen(port, () => console.log(`listening on port ${port}!`));
 
 app.get('/players', (req, res) => {
-  res.send(require('../database/exampleData'));
+  postgres.getPlayers((result) => {
+    res.send(result);
+  });
 });
 
 app.post('/players', (req, res) => {

@@ -16,7 +16,7 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/players')
       .then((response) => {
-        this.setState({ players: response.data.squad });
+        this.setState({ players: response.data });
       })
       .catch((err) => {
         console.log(err);
@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   render() {
-    const players = this.state.players.map((player) => <Player key={player.id} player={player} />);
+    const players = this.state.players.map((player) => <Player key={player.player_id} player={player} />);
     return (
       <FlexDiv>
         <Search />

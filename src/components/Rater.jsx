@@ -24,7 +24,7 @@ class Rater extends React.Component {
       method: 'post',
       url: '/players',
       data: {
-        playerId: this.props.player.id,
+        playerId: this.props.player.player_id,
         rating: this.state.rating
       }
     })
