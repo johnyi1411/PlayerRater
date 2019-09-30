@@ -14,12 +14,23 @@ app.use(bodyParser.json());
 app.listen(port, () => console.log(`listening on port ${port}!`));
 
 app.get('/players', (req, res) => {
-  postgres.getPlayers((result) => {
-    res.send(result);
+  postgres.getPlayers((err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({status: 500});
+    } else {
+      res.send(result);
+    }
   });
 });
 
-app.post('/players', (req, res) => {
-  console.log(req.body, req.params);
-  res.send({status: 200});
+app.post('/api/ratings', (req, res) => {
+  postgres.createRating(req.body, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({status: 500});
+    } else {
+      res.send({status: 200});
+    }
+  })
 })

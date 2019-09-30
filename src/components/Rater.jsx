@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { EventEmitter } from 'events';
 
 class Rater extends React.Component {
   constructor(props) {
@@ -22,15 +21,12 @@ class Rater extends React.Component {
     this.props.clearSelectedPlayer();
     axios({
       method: 'post',
-      url: '/players',
+      url: '/api/ratings',
       data: {
         playerId: this.props.player.player_id,
         rating: this.state.rating
       }
     })
-      .then((result) => {
-        console.log('successful post', result);
-      })
       .catch((err) => {
         console.log('error posting', err);
       })
