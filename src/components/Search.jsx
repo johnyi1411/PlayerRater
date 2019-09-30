@@ -18,9 +18,8 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/players')
+    axios.get('/api/players')
       .then((response) => {
-        console.log(response.data);
         this.setState({ players: response.data });
       })
       .catch((err) => {
@@ -64,6 +63,7 @@ class Search extends React.Component {
         selectedPlayerId={this.state.selectedPlayerId}
         handlePlayerSelection={this.handlePlayerSelection}
         clearSelectedPlayer={this.clearSelectedPlayer}
+        getAverageRatings={this.props.getAverageRatings}
       />
       );
     }

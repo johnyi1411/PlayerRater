@@ -9,27 +9,32 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      players: [],
+      ratings: [],
     };
+    this.getAverageRatings = this.getAverageRatings.bind(this);
   }
 
-  componentDidMount() {
-    axios.get('/players')
+  getAverageRatings() {
+    axios.get('/api/ratings')
       .then((response) => {
-        this.setState({ players: response.data });
+        this.setState({ ratings: response.data });
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  componentDidMount() {
+    this.getAverageRatings();
+  }
+
   render() {
-    const players = this.state.players.map((player) => <Player key={player.player_id} player={player} />);
+    const ratings = this.state.ratings.map((player) => <Player key={player.player_id} player={player} />);
     return (
       <FlexDiv>
-        <Search />
+        <Search getAverageRatings={this.getAverageRatings}/>
         <RatingTable>
-          {players}
+          {ratings}
         </RatingTable>
       </FlexDiv>
     );

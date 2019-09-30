@@ -27,6 +27,7 @@ class Rater extends React.Component {
         rating: this.state.rating
       }
     })
+      .then(() => this.props.getAverageRatings())
       .catch((err) => {
         console.log('error posting', err);
       })
