@@ -11,8 +11,8 @@ client.connect(err => {
 });
 
 class User {
-  constructor(username, password) {
-    this.username = username;
+  constructor(userId, password) {
+    this.userId = userId;
     this.password = password;
   }
 
@@ -49,10 +49,10 @@ module.exports = {
       });
   },
 
-  createRating: ({playerId, rating}, callback) => {
+  createRating: ({userId, playerId, rating}, callback) => {
     const text = 'INSERT INTO ratings VALUES($1, $2, $3)';
     client
-      .query(text, [1, playerId, rating])
+      .query(text, [userId, playerId, rating])
       .then((res) => callback(null, res))
       .catch(e => {
         console.error(e.stack);
@@ -72,10 +72,17 @@ module.exports = {
   },
 
   login: ({username}, callback) => {
-    const text = 'SELECT password FROM users WHERE username = $1';
+    const text = 'SELECT user_id, password FROM users WHERE username = $1';
     client
       .query(text, [username])
-      .then((res) => callback(null, new User (username, res.rows[0].password)))
+      .then((res) => {
+        if (res.rows[0]) {
+          const user = new User (res.rows[0].user_id, res.rows[0].password);
+          callback(null, user);
+        } else {
+          callback('no user found');
+        }
+      })
       .catch(e => {
         console.error(e.stack);
         callback(e);
