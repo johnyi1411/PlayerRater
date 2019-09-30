@@ -10,6 +10,17 @@ client.connect(err => {
   }
 });
 
+class User {
+  constructor(username, password) {
+    this.username = username;
+    this.password = password;
+  }
+
+  validPassword(password) {
+    return password === this.password;
+  }
+}
+
 module.exports = {
   getPlayers: (callback) => {
     client
@@ -58,7 +69,18 @@ module.exports = {
         console.error(e.stack);
         callback(e);
       });
-  }
+  },
+
+  login: ({username}, callback) => {
+    const text = 'SELECT password FROM users WHERE username = $1';
+    client
+      .query(text, [username])
+      .then((res) => callback(null, new User (username, res.rows[0].password)))
+      .catch(e => {
+        console.error(e.stack);
+        callback(e);
+      });
+  },
 
   
 };

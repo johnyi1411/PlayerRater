@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Login extends React.Component {
   constructor (props) {
@@ -11,7 +12,20 @@ class Login extends React.Component {
 
   handleLogin(e) {
     e.preventDefault();
-    alert(`${document.getElementById('username').value}, ${document.getElementById('password').value}`);
+    axios({
+      method: 'post',
+      url: '/login',
+      data: {
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+      }
+    })
+      .then((res) => {
+        alert('succesful login' + res.data);
+      })
+      .catch((err) => {
+        alert('error logging in');
+      })
   }
 
   render() {
