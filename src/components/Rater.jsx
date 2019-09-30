@@ -46,8 +46,8 @@ class Rater extends React.Component {
           <select value={this.state.value} onChange={this.handleChange}>
             {options}
           </select>
-          <input type="submit" value="Rate"/>
         </label>
+        <input type="submit" value="Rate"/>
       </form>
     );
   }
