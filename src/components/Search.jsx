@@ -64,6 +64,7 @@ class Search extends React.Component {
         handlePlayerSelection={this.handlePlayerSelection}
         clearSelectedPlayer={this.clearSelectedPlayer}
         getAverageRatings={this.props.getAverageRatings}
+        userId={this.props.userId}
       />
       );
     }

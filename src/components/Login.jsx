@@ -6,8 +6,6 @@ class Login extends React.Component {
     super(props);
     this.state = {
       login: false,
-      userId: {},
-      session: {},
     }
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -24,9 +22,8 @@ class Login extends React.Component {
     })
       .then((result) => {
         this.setState({
-          userId: result.data.user.userId,
-          session: result.data.session,
-        });
+          login: true,
+        }, () => this.props.createSession(result.data.user.userId));
       })
       .catch((err) => {
         console.log(err);

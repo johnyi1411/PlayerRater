@@ -13,9 +13,11 @@ class App extends React.Component {
     this.state = {
       ratings: [],
       registerView: false,
+      userId: null
     };
     this.getAverageRatings = this.getAverageRatings.bind(this);
     this.toggleRegisterView = this.toggleRegisterView.bind(this);
+    this.createSession = this.createSession.bind(this);
   }
 
   getAverageRatings() {
@@ -36,15 +38,21 @@ class App extends React.Component {
     this.setState({ registerView: !this.state.registerView });
   }
 
+  createSession(userId) {
+    this.setState({ userId });
+  }
+
   render() {
     const ratings = this.state.ratings.map((player) => <Player key={player.player_id} player={player} />);
-    const login = this.state.registerView ? <Register toggleRegisterView={this.toggleRegisterView}/> : <Login toggleRegisterView={this.toggleRegisterView}/>;
+    const login = this.state.registerView ? 
+      <Register toggleRegisterView={this.toggleRegisterView}/> 
+      : <Login toggleRegisterView={this.toggleRegisterView} createSession={this.createSession}/>;
 
     return (
       <FlexDiv>
         <FlexColumnDiv>
           {login}
-          <Search getAverageRatings={this.getAverageRatings}/>
+          <Search getAverageRatings={this.getAverageRatings} userId={this.state.userId}/>
         </FlexColumnDiv>
         <RatingTable>
           {ratings}

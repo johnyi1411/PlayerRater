@@ -2,10 +2,10 @@ import React from 'react';
 import Rater from './Rater';
 import { FlexColumnDiv } from './styles/SharedStyles';
 
-const SearchedPlayer = ({ player, handlePlayerSelection, selectedPlayerId, clearSelectedPlayer, getAverageRatings }) => {
+const SearchedPlayer = ({ player, handlePlayerSelection, selectedPlayerId, clearSelectedPlayer, getAverageRatings, userId }) => {
   let rater;
   if (selectedPlayerId === player.player_id) {
-    rater = <Rater player={player} clearSelectedPlayer={clearSelectedPlayer} getAverageRatings={getAverageRatings}/>
+    rater = <Rater player={player} clearSelectedPlayer={clearSelectedPlayer} getAverageRatings={getAverageRatings} userId={userId}/>
   }
   return (
     <FlexColumnDiv>
