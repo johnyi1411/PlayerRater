@@ -19,7 +19,6 @@ class Rater extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.props.userId) {
-      console.log('hellp');
       this.props.clearSelectedPlayer();
       axios({
         method: 'post',

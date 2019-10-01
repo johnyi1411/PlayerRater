@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   render() {
-    const ratings = this.state.ratings.map((player) => <Player key={player.player_id} player={player} />);
+    const ratings = this.state.ratings.map((player, index) => <Player index={index} key={player.player_id} player={player} />);
 
     let userView;
 
