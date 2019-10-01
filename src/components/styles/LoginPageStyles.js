@@ -25,4 +25,5 @@ export const ModalBackground = styled(FlexDiv)`
   width: 100%
   background-color: gray;
   opacity: 0.4;
+  z-index:1
 `

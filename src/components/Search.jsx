@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { FlexColumnDiv } from './styles/SharedStyles';
 import SearchedPlayer from './SearchedPlayer';
+import { FlexColumnDiv } from './styles/SharedStyles';
+import { SearchedPlayerList } from './styles/SearchStyles';
 
 class Search extends React.Component {
   constructor(props) {
@@ -35,7 +36,10 @@ class Search extends React.Component {
   }
 
   clearSelectedPlayer() {
-    this.setState({ selectedPlayerId: null });
+    this.setState({
+      selectedPlayerId: null,
+      searchString: '',
+    });
   }
 
   handlePlayerSelection(selectedPlayerId) {
@@ -77,7 +81,9 @@ class Search extends React.Component {
             <input type="text" value={this.state.searchString} onChange={this.handleChange} />
           </label>
         </form>
-        {listedSearchedPlayers}
+        <SearchedPlayerList>
+          {listedSearchedPlayers}
+        </SearchedPlayerList>
       </FlexColumnDiv>
     );  
   }
