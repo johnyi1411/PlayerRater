@@ -1,5 +1,8 @@
 const { Client } = require('pg');
 const config = require('./config/pg.config');
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
 
 const client = new Client(config);
 client.connect(err => {
@@ -18,7 +21,7 @@ class User {
   }
 
   validPassword(password) {
-    return password === this.password;
+    return bcrypt.compareSync(password, this.password);
   }
 }
 
@@ -62,9 +65,10 @@ module.exports = {
   },
 
   createUser: ({username, password}, callback) => {
-    const text = 'INSERT INTO users (username, password) VALUES($1, $2)';
+    const text = 'INSERT INTO users (username, password, salt) VALUES($1, $2, $3)';
+    const salt = bcrypt.genSaltSync(saltRounds);
     client
-      .query(text, [username, password])
+      .query(text, [username, bcrypt.hashSync(password, salt), salt])
       .then((res) => callback(null, res))
       .catch(e => {
         console.error(e.stack);

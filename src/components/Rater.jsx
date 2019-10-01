@@ -18,20 +18,24 @@ class Rater extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.clearSelectedPlayer();
-    axios({
-      method: 'post',
-      url: '/api/ratings',
-      data: {
-        userId: this.props.userId,
-        playerId: this.props.player.player_id,
-        rating: this.state.rating
-      }
-    })
-      .then(() => this.props.getAverageRatings())
-      .catch((err) => {
-        console.log('error posting', err);
+    if (this.props.userId) {
+      this.props.clearSelectedPlayer();
+      axios({
+        method: 'post',
+        url: '/api/ratings',
+        data: {
+          userId: this.props.userId,
+          playerId: this.props.player.player_id,
+          rating: this.state.rating
+        }
       })
+        .then(() => this.props.getAverageRatings())
+        .catch((err) => {
+          console.log('error posting', err);
+        })
+    } else {
+      alert('please log in');
+    }
   }
 
   render() {
