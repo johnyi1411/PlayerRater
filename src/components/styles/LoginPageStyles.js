@@ -5,6 +5,10 @@ export const LoginPageStyled = styled(FlexColumnDiv)`
   width: 300px;
   height: 300px;
   z-index: 10;
+  border: black solid 1px;
+  border-radius: 3px;
+  background: white;
+  padding: 15px;
 `
 
 export const PageFillDiv = styled(FlexDiv)`
