@@ -1,6 +1,6 @@
 import React from 'react';
 import Rater from './Rater';
-import { FlexColumnDiv } from './styles/SharedStyles';
+import { MarginFlexDiv } from './styles/SearchedPlayerStyle';
 
 const SearchedPlayer = ({ player, handlePlayerSelection, selectedPlayerId, clearSelectedPlayer, getAverageRatings, userId }) => {
   let rater;
@@ -8,10 +8,10 @@ const SearchedPlayer = ({ player, handlePlayerSelection, selectedPlayerId, clear
     rater = <Rater player={player} clearSelectedPlayer={clearSelectedPlayer} getAverageRatings={getAverageRatings} userId={userId}/>
   }
   return (
-    <FlexColumnDiv>
+    <MarginFlexDiv>
       <span onClick={() => handlePlayerSelection(player.player_id)}>{player.name}</span>
       {rater}
-    </FlexColumnDiv>
+    </MarginFlexDiv>
   );
 };
 

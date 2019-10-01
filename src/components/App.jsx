@@ -3,8 +3,9 @@ import axios from 'axios';
 import Player from './Player';
 import Search from './Search';
 import LoginPage from './LoginPage';
-import { FlexDiv, FlexColumnDiv } from './styles/SharedStyles'
-import { AppTable, TopBar } from './styles/AppStyles';
+import { FlexColumnDiv, FlexAlignCenterDiv } from './styles/SharedStyles'
+import { AppTable, TopBar, LoginButton, Username } from './styles/AppStyles';
+import User from './User';
 
 class App extends React.Component {
   constructor (props) {
@@ -62,18 +63,16 @@ class App extends React.Component {
     let userView;
 
     if (this.state.userId) {
-      userView = <FlexDiv>
-        <span>{this.state.username}</span>
-        <button onClick={() => this.setState({
+      userView = <FlexAlignCenterDiv>
+        <Username>{this.state.username}</Username>
+        <LoginButton onClick={() => this.setState({
           loginView: false,
           userId: null,
           username: null,
-        })}>Logout</button>
-      </FlexDiv>
+        })}>Logout</LoginButton>
+      </FlexAlignCenterDiv>
     } else {
-      userView = <FlexDiv>
-        <button onClick={() => this.setState({ loginView: true })}>Login</button>
-    </FlexDiv>
+      userView = <LoginButton onClick={() => this.setState({ loginView: true })}>Login</LoginButton>
     }
 
     const loginPage = this.state.loginView ? <LoginPage toggleRegisterView={this.toggleRegisterView}

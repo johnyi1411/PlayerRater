@@ -50,6 +50,7 @@ class Rater extends React.Component {
       <PageFillDiv>
         <ModalBackground />
         <RaterStyled as="form" onSubmit={this.handleSubmit}>
+            <span>{this.props.player.name}</span>
             <label>
               Rating:
               <select value={this.state.value} onChange={this.handleChange}>
@@ -57,6 +58,7 @@ class Rater extends React.Component {
               </select>
             </label>
             <input type="submit" value="Rate"/>
+            <button onClick={this.props.clearSelectedPlayer}>X</button>
         </RaterStyled>
       </PageFillDiv>
     );

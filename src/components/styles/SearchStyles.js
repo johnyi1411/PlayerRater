@@ -4,7 +4,7 @@ import { FlexColumnDiv, FlexDiv } from './SharedStyles';
 export const SearchedPlayerList = styled(FlexColumnDiv)`
   position: absolute;
   background: lightgray;
-  top: 62px;
+  top: 73px;
   width: 600px;
   z-index: 1;
 `
@@ -18,4 +18,8 @@ export const SearchBox = styled(FlexDiv)`
 
 export const SearchField = styled.input.attrs()`
   border: 0;
+  width: 200px;
+  height: 25px;
+  font-size: 20px;
+  margin-left: 5px;
 `
