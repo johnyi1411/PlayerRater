@@ -7,4 +7,5 @@ export const MarginFlexDiv = styled(FlexDiv)`
 `
 export const SearchedPlayerName = styled.span.attrs()`
   margin-left: 15px;
+  width: 100%;
 `
