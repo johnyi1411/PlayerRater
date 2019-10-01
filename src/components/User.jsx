@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Login from './Login';
 import Register from './Register';
+import { FlexDiv } from './styles/SharedStyles';
 
 class User extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class User extends React.Component {
     this.state= {
       login: false,
       username: null,
+      registerView: false,
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.toggleRegisterView = this.toggleRegisterView.bind(this);
@@ -51,10 +53,10 @@ class User extends React.Component {
     let user;
 
     if (this.state.username) {
-      user = <div>
+      user = <FlexDiv>
         <span>{this.state.username}</span>
         <button onClick={this.handleLogout}>Logout</button>
-      </div>;
+      </FlexDiv>;
     } else {
       user= this.state.registerView ? 
       <Register toggleRegisterView={this.toggleRegisterView}/> 

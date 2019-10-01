@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { FlexForm } from './styles/LoginRegisterStyles';
 
 class Register extends React.Component {
   constructor (props) {
@@ -12,6 +13,16 @@ class Register extends React.Component {
 
   handleRegister(e) {
     e.preventDefault();
+    if (document.getElementById('username').value.length === 0) {
+      alert('please choose a username');
+      return;
+    }
+
+    if (document.getElementById('password').value.length === 0) {
+      alert('please choose a username');
+      return;
+    }
+
     if (document.getElementById('password').value === document.getElementById('passwordconfirmation').value) {
       axios({
         method: 'post',
@@ -35,7 +46,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleRegister}>
+      <FlexForm onSubmit={this.handleRegister}>
         <label>
           Username:
           <input id="username" type="text" />
@@ -49,7 +60,8 @@ class Register extends React.Component {
           <input id="passwordconfirmation" type="password" />
         </label>
         <input type="submit" value="Register"/>
-      </form>
+        <input type="button" value="Login" onClick={this.props.toggleRegisterView} />
+      </FlexForm>
     );
   }
 }
