@@ -1,6 +1,6 @@
 import React from 'react';
 import Rater from './Rater';
-import { MarginFlexDiv } from './styles/SearchedPlayerStyle';
+import { MarginFlexDiv, SearchedPlayerName } from './styles/SearchedPlayerStyle';
 
 const SearchedPlayer = ({ player, handlePlayerSelection, selectedPlayerId, clearSelectedPlayer, getAverageRatings, userId }) => {
   let rater;
@@ -9,7 +9,7 @@ const SearchedPlayer = ({ player, handlePlayerSelection, selectedPlayerId, clear
   }
   return (
     <MarginFlexDiv>
-      <span onClick={() => handlePlayerSelection(player.player_id)}>{player.name}</span>
+      <SearchedPlayerName onClick={() => handlePlayerSelection(player.player_id)}>{player.name}</SearchedPlayerName>
       {rater}
     </MarginFlexDiv>
   );
