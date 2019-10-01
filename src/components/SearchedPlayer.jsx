@@ -8,8 +8,8 @@ const SearchedPlayer = ({ player, handlePlayerSelection, selectedPlayerId, clear
     rater = <Rater player={player} clearSelectedPlayer={clearSelectedPlayer} getAverageRatings={getAverageRatings} userId={userId}/>
   }
   return (
-    <MarginFlexDiv>
-      <SearchedPlayerName onClick={() => handlePlayerSelection(player.player_id)}>{player.name}</SearchedPlayerName>
+    <MarginFlexDiv onClick={() => handlePlayerSelection(player.player_id)}>
+      <SearchedPlayerName >{player.name}</SearchedPlayerName>
       {rater}
     </MarginFlexDiv>
   );
