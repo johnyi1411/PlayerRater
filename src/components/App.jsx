@@ -54,6 +54,7 @@ class App extends React.Component {
         <button onClick={() => this.setState({
           loginView: false,
           userId: null,
+          username: null,
         })}>Logout</button>
       </FlexDiv>
     } else {
