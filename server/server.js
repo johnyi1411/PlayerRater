@@ -62,6 +62,17 @@ app.get('/api/ratings', (req, res) => {
   });
 });
 
+app.get('/api/teams', (req, res) => {
+  postgres.getAllTeams((err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({status: 500});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.post('/api/ratings', (req, res) => {
   postgres.createRating(req.body, (err, result) => {
     if (err) {

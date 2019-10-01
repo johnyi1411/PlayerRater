@@ -1,10 +1,16 @@
 import styled from 'styled-components';
-import { FlexSpaceBetweenDiv } from './SharedStyles';
 
-export const PlayerStyle = styled(FlexSpaceBetweenDiv)`
-  background-color: ${index % 2 === 0 ? 'rgb(153, 204, 255)' : 'background-color: rgb(204, 255, 255)'};
+export const Crest = styled.img`
+  height: 20px;
 `
 
-// export const LightPlayer = styled(FlexSpaceBetweenDiv)`
-//   background-color: rgb(204, 255, 255);
-// `
+export const PlayerName = styled.span`
+  position: relative;
+  left: 20px;
+`
+
+export const FixedDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 20px;
+`

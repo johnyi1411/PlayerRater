@@ -11,3 +11,7 @@ export const FlexColumnDiv = styled(FlexDiv)`
 export const FlexSpaceBetweenDiv = styled(FlexDiv)`
   justify-content: space-between;
 `
+
+export const FlexAlignCenterDiv = styled(FlexDiv)`
+  align-items: center;
+`

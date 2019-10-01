@@ -1,6 +1,7 @@
 const { Client } = require('pg');
 const config = require('./config/pg.config');
 const bcrypt = require('bcrypt');
+const axios = require('axios');
 
 const saltRounds = 10;
 
@@ -37,7 +38,7 @@ module.exports = {
   },
 
   getAverageRatings: (callback) => {
-    const text = "select name, players.player_id, rating FROM players LEFT OUTER JOIN (select player_id, AVG(rating) as rating from ratings group by player_id) average_ratings ON players.player_id = average_ratings.player_id WHERE rating is not null ORDER BY rating DESC LIMIT 25;";
+    const text = "select name, players.player_id, rating, players.team_id FROM players LEFT OUTER JOIN (select player_id, AVG(rating) as rating from ratings group by player_id) average_ratings ON players.player_id = average_ratings.player_id WHERE rating is not null ORDER BY rating DESC LIMIT 25;";
     client
       .query(text)
       .then((res) => {
@@ -94,5 +95,14 @@ module.exports = {
       });
   },
 
+  getAllTeams: (callback) => {
+    client
+      .query('SELECT * from teams')
+      .then((res) => callback(null, res.rows))
+      .catch(e => {
+        console.error(e.stack);
+        callback(e);
+      });
+  },
   
 };

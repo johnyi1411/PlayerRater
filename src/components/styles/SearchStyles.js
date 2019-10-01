@@ -5,5 +5,6 @@ export const SearchedPlayerList = styled(FlexColumnDiv)`
   position: fixed;
   background: lightgray;
   top: 33px;
-  width: 750px;
+  width: 600px;
+  z-index: 1;
 `

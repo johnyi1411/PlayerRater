@@ -3,8 +3,8 @@ import axios from 'axios';
 import Player from './Player';
 import Search from './Search';
 import LoginPage from './LoginPage';
-import { FlexDiv, FlexColumnDiv, FlexSpaceBetweenDiv } from './styles/SharedStyles'
-import { AppTable } from './styles/AppStyles';
+import { FlexDiv, FlexColumnDiv } from './styles/SharedStyles'
+import { AppTable, TopBar } from './styles/AppStyles';
 
 class App extends React.Component {
   constructor (props) {
@@ -15,6 +15,7 @@ class App extends React.Component {
       loginView: false,
       registerView: false,
       username: null,
+      teams: {},
       };
     this.getAverageRatings = this.getAverageRatings.bind(this);
     this.createSession = this.createSession.bind(this);
@@ -24,6 +25,7 @@ class App extends React.Component {
   getAverageRatings() {
     axios.get('/api/ratings')
       .then((response) => {
+        response.data.forEach((rating) => rating.teamCrest = this.state.teams[rating.team_id]);
         this.setState({ ratings: response.data });
       })
       .catch((err) => {
@@ -32,7 +34,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getAverageRatings();
+    axios.get('/api/teams')
+      .then((result) => {
+        const teams = {};
+        result.data.forEach((team) => {
+          teams[team.team_id] = team.crest_url;
+        });
+        this.setState({ teams });
+      })
+      .then(() => {
+        this.getAverageRatings();
+      })
+      .catch((e) => console.log(e));
   }
 
   createSession({userId, username}) {
@@ -69,10 +82,10 @@ class App extends React.Component {
     return (
       <AppTable>
         {loginPage}
-        <FlexSpaceBetweenDiv>
+        <TopBar>
           <Search getAverageRatings={this.getAverageRatings} userId={this.state.userId}/>
           {userView}
-        </FlexSpaceBetweenDiv>
+        </TopBar>
         <FlexColumnDiv>
           {ratings}
         </FlexColumnDiv>
