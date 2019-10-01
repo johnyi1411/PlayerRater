@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { ModalBackground, PageFillDiv } from './styles/LoginPageStyles';
+import { RaterStyled } from './styles/RaterStyles';
 
 class Rater extends React.Component {
   constructor(props) {
@@ -45,15 +47,18 @@ class Rater extends React.Component {
     }
   
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Rating:
-          <select value={this.state.value} onChange={this.handleChange}>
-            {options}
-          </select>
-        </label>
-        <input type="submit" value="Rate"/>
-      </form>
+      <PageFillDiv>
+        <ModalBackground />
+        <RaterStyled as="form" onSubmit={this.handleSubmit}>
+            <label>
+              Rating:
+              <select value={this.state.value} onChange={this.handleChange}>
+                {options}
+              </select>
+            </label>
+            <input type="submit" value="Rate"/>
+        </RaterStyled>
+      </PageFillDiv>
     );
   }
 }

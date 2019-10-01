@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import SearchedPlayer from './SearchedPlayer';
 import { FlexColumnDiv } from './styles/SharedStyles';
-import { SearchedPlayerList } from './styles/SearchStyles';
+import { SearchedPlayerList, SearchBox, SearchField } from './styles/SearchStyles';
 
 class Search extends React.Component {
   constructor(props) {
@@ -75,12 +75,10 @@ class Search extends React.Component {
 
     return (
       <FlexColumnDiv>
-        <form>
-          <label>
-            Name:
-            <input type="text" value={this.state.searchString} onChange={this.handleChange} />
-          </label>
-        </form>
+        <SearchBox >
+          <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false" style={{height: '16px', width: '16px', display: 'block', fill: 'gray'}}><path d="m2.5 7c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5m13.1 6.9-2.8-2.9c.7-1.1 1.2-2.5 1.2-4 0-3.9-3.1-7-7-7s-7 3.1-7 7 3.1 7 7 7c1.5 0 2.9-.5 4-1.2l2.9 2.8c.2.3.5.4.9.4.3 0 .6-.1.8-.4.5-.5.5-1.2 0-1.7"></path></svg>
+          <SearchField type="text" value={this.state.searchString} onChange={this.handleChange} />
+        </SearchBox>
         <SearchedPlayerList>
           {listedSearchedPlayers}
         </SearchedPlayerList>

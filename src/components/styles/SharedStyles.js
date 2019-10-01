@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const FlexDiv = styled.div`
+export const FlexDiv = styled.div.attrs()`
   display: flex;
 `
 
 export const FlexColumnDiv = styled(FlexDiv)`
-  flex-direction: column;  
+  flex-direction: column;
 `
 
 export const FlexSpaceBetweenDiv = styled(FlexDiv)`

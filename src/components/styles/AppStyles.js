@@ -6,8 +6,9 @@ export const AppTable = styled(FlexColumnDiv)`
   border: black 1px solid;
   border-radius: 3px;
   padding: 5px;
+  font-family: Arial;
 `
 
 export const TopBar = styled(FlexSpaceBetweenDiv)`
-  margin-bottom: 25px;
+  margin: 25px 0;
 `
