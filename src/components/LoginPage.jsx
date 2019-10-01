@@ -5,10 +5,12 @@ import { LoginPageStyled, ModalBackground, PageFillDiv } from './styles/LoginPag
 const LoginPage = (props) => {
   return (
     <PageFillDiv>
-      <ModalBackground>
-      </ModalBackground>
+      <ModalBackground />
       <LoginPageStyled>
-        <User toggleRegisterView={props.toggleRegisterView} createSession={props.createSession} />
+        <User toggleRegisterView={props.toggleRegisterView}
+          createSession={props.createSession}
+          toggleLoginView={props.toggleLoginView}/>
+        <button onClick={props.toggleLoginView}>X</button>
       </LoginPageStyled>
     </PageFillDiv>
   );

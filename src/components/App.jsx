@@ -18,6 +18,7 @@ class App extends React.Component {
       };
     this.getAverageRatings = this.getAverageRatings.bind(this);
     this.createSession = this.createSession.bind(this);
+    this.toggleLoginView = this.toggleLoginView.bind(this);
   }
 
   getAverageRatings() {
@@ -35,7 +36,11 @@ class App extends React.Component {
   }
 
   createSession(userId) {
-    this.setState({ userId });
+    this.setState({ userId }, this.toggleLoginView);
+  }
+
+  toggleLoginView() {
+    this.setState({ loginView: !this.state.loginView });
   }
 
   render() {
@@ -45,7 +50,10 @@ class App extends React.Component {
 
     if (this.state.userId) {
       userView = <FlexDiv>
-        <button>Logout</button>
+        <button onClick={() => this.setState({
+          loginView: false,
+          userId: null,
+        })}>Logout</button>
       </FlexDiv>
     } else {
       userView = <FlexDiv>
@@ -53,7 +61,8 @@ class App extends React.Component {
     </FlexDiv>
     }
 
-    const loginPage = this.state.loginView ? <LoginPage toggleRegisterView={this.toggleRegisterView} createSession={this.createSession} /> : undefined;
+    const loginPage = this.state.loginView ? <LoginPage toggleRegisterView={this.toggleRegisterView}
+      createSession={this.createSession} toggleLoginView={this.toggleLoginView}/> : undefined;
 
     return (
       <AppTable>

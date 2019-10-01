@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { FlexForm } from './styles/LoginRegisterStyles';
+import { FlexColumnForm } from './styles/LoginRegisterStyles';
 
 class Register extends React.Component {
   constructor (props) {
@@ -46,7 +46,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <FlexForm onSubmit={this.handleRegister}>
+      <FlexColumnForm onSubmit={this.handleRegister}>
         <label>
           Username:
           <input id="username" type="text" />
@@ -61,7 +61,7 @@ class Register extends React.Component {
         </label>
         <input type="submit" value="Register"/>
         <input type="button" value="Login" onClick={this.props.toggleRegisterView} />
-      </FlexForm>
+      </FlexColumnForm>
     );
   }
 }

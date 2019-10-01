@@ -60,7 +60,10 @@ class User extends React.Component {
     } else {
       user= this.state.registerView ? 
       <Register toggleRegisterView={this.toggleRegisterView}/> 
-      : <Login toggleRegisterView={this.toggleRegisterView} createSession={this.props.createSession} handleLogin={this.handleLogin}/>;
+      : <Login toggleRegisterView={this.toggleRegisterView}
+      createSession={this.props.createSession}
+      handleLogin={this.handleLogin}
+      toggleLoginView={this.props.toggleLoginView}/>;
     }
 
     return user;

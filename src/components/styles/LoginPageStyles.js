@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FlexDiv } from './SharedStyles';
+import { FlexDiv, FlexColumnDiv } from './SharedStyles';
 
-export const LoginPageStyled = styled.div`
+export const LoginPageStyled = styled(FlexColumnDiv)`
   width: 300px;
   height: 300px;
   z-index: 10;

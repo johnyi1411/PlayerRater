@@ -1,8 +1,8 @@
 import React from 'react';
-import { FlexForm } from './styles/LoginRegisterStyles';
+import { FlexColumnForm } from './styles/LoginRegisterStyles';
 
 const Login = (props) => (
-  <FlexForm onSubmit={props.handleLogin}>
+  <FlexColumnForm onSubmit={props.handleLogin}>
     <label>
       Username:
       <input id="username" type="text" />
@@ -13,7 +13,7 @@ const Login = (props) => (
     </label>
     <input type="submit" value="Login"/>
     <input type="button" value="Register" onClick={props.toggleRegisterView} />
-  </FlexForm>
+  </FlexColumnForm>
 );
 
 export default Login;
