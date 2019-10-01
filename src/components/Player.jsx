@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FlexSpaceBetweenDiv, FlexAlignCenterDiv } from './styles/SharedStyles';
-import { Crest, PlayerName, FixedDiv } from './styles/PlayerStyles';
+import { Crest, PlayerName, FixedDiv, RatingSpan } from './styles/PlayerStyles';
 
 const Player = ({player, index}) => {
   const PlayerStyle = styled(FlexSpaceBetweenDiv)`
@@ -16,7 +16,7 @@ const Player = ({player, index}) => {
         </FixedDiv>
         <PlayerName>{player.name}</PlayerName>
       </FlexAlignCenterDiv>
-      <span>{player.rating}</span>
+      <RatingSpan>{player.rating}</RatingSpan>
     </PlayerStyle>
   );
 };
