@@ -7,5 +7,5 @@ export const RaterStyled = styled(LoginPageStyled)`
   align-items: center;
   height: 200px;
   width: 200px;
-  justify-content: center;
+  justify-content: space-evenly;
 `

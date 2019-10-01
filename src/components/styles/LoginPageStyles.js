@@ -9,6 +9,7 @@ export const LoginPageStyled = styled(FlexColumnDiv)`
   border-radius: 3px;
   background: white;
   padding: 15px;
+  justify-content: space-evenly;
 `
 
 export const PageFillDiv = styled(FlexDiv)`
