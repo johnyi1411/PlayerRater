@@ -14,7 +14,6 @@ class User extends React.Component {
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.toggleRegisterView = this.toggleRegisterView.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogin(e) {
@@ -37,13 +36,6 @@ class User extends React.Component {
 
   toggleRegisterView() {
     this.setState({ registerView: !this.state.registerView });
-  }
-
-  handleLogout() {
-    this.setState({
-      login: false,
-      username: null,
-    }, () => this.props.createSession(null))
   }
 
   render() {
