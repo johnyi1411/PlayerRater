@@ -28,10 +28,7 @@ class User extends React.Component {
       }
     })
       .then((result) => {
-        this.setState({
-          login: true,
-          username: result.data.user.username,
-        }, () => this.props.createSession(result.data.user.userId));
+        this.props.createSession(result.data.user);
       })
       .catch((err) => {
         alert('error logging in');
@@ -50,22 +47,13 @@ class User extends React.Component {
   }
 
   render() {
-    let user;
-
-    if (this.state.username) {
-      user = <FlexDiv>
-        <span>{this.state.username}</span>
-        <button onClick={this.handleLogout}>Logout</button>
-      </FlexDiv>;
-    } else {
-      user= this.state.registerView ? 
+    let user = this.state.registerView ? 
       <Register toggleRegisterView={this.toggleRegisterView}/> 
       : <Login toggleRegisterView={this.toggleRegisterView}
       createSession={this.props.createSession}
       handleLogin={this.handleLogin}
       toggleLoginView={this.props.toggleLoginView}/>;
-    }
-
+    
     return user;
   }
 }

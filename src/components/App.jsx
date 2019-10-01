@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Player from './Player';
 import Search from './Search';
-import User from './User';
 import LoginPage from './LoginPage';
 import { FlexDiv, FlexColumnDiv, FlexSpaceBetweenDiv } from './styles/SharedStyles'
 import { AppTable } from './styles/AppStyles';
@@ -15,6 +14,7 @@ class App extends React.Component {
       userId: null,
       loginView: false,
       registerView: false,
+      username: null,
       };
     this.getAverageRatings = this.getAverageRatings.bind(this);
     this.createSession = this.createSession.bind(this);
@@ -35,8 +35,8 @@ class App extends React.Component {
     this.getAverageRatings();
   }
 
-  createSession(userId) {
-    this.setState({ userId }, this.toggleLoginView);
+  createSession({userId, username}) {
+    this.setState({ userId, username }, this.toggleLoginView);
   }
 
   toggleLoginView() {
@@ -50,6 +50,7 @@ class App extends React.Component {
 
     if (this.state.userId) {
       userView = <FlexDiv>
+        <span>{this.state.username}</span>
         <button onClick={() => this.setState({
           loginView: false,
           userId: null,
@@ -70,7 +71,6 @@ class App extends React.Component {
         <FlexSpaceBetweenDiv>
           <Search getAverageRatings={this.getAverageRatings} userId={this.state.userId}/>
           {userView}
-          {/* <User toggleRegisterView={this.toggleRegisterView} createSession={this.createSession} /> */}
         </FlexSpaceBetweenDiv>
         <FlexColumnDiv>
           {ratings}
