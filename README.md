@@ -1,5 +1,3 @@
-Allow users to rate players
-Display aggregate player ratings
 # PlayerRater
 
 <img src="https://s3.amazonaws.com/poly-screenshots.angel.co/Project/2d/1044282/32a9f0a5bb46f25d0c915c0bc7dae44f-original.png">
