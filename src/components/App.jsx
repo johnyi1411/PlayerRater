@@ -44,7 +44,7 @@ class App extends React.Component {
       })
       .then(() => {
         this.getAverageRatings();
-        setInterval(this.getAverageRatings, 1000);
+        setInterval(this.getAverageRatings, 30000);
       })
       .catch((e) => console.log(e));
   }
