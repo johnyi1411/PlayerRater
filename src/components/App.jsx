@@ -5,7 +5,6 @@ import Search from './Search';
 import LoginPage from './LoginPage';
 import { FlexColumnDiv, FlexAlignCenterDiv } from './styles/SharedStyles'
 import { AppTable, TopBar, LoginButton, Username } from './styles/AppStyles';
-import User from './User';
 
 class App extends React.Component {
   constructor (props) {
@@ -45,6 +44,7 @@ class App extends React.Component {
       })
       .then(() => {
         this.getAverageRatings();
+        setInterval(this.getAverageRatings, 1000);
       })
       .catch((e) => console.log(e));
   }
