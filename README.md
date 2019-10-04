@@ -1,8 +1,7 @@
 # PlayerRater
+PlayerRater is a simple rating app for soccer players in the English Premier League. It aggregates ratings from all users and displays the top 25 players based on their average rating.
 
 <img src="https://s3.amazonaws.com/poly-screenshots.angel.co/Project/2d/1044282/32a9f0a5bb46f25d0c915c0bc7dae44f-original.png" height="750px">
-
-PlayerRater is a simple rating app for soccer players in the English Premier League. It aggregates ratings from all users and displays the top 25 players based on their average rating.
 
 ## How It Works
 
